@@ -10,6 +10,4 @@ import thirdwavecoffee.entity.Coffee;
 
 @Repository
 public interface CoffeeDao extends JpaRepository<Coffee, Long> {
-    Coffee getCoffeeById(long id);
-
 }

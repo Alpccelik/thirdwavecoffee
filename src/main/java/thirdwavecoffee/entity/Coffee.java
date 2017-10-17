@@ -1,32 +1,47 @@
 package thirdwavecoffee.entity;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * Created by alp on 15.10.2017.
  */
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-
 public class Coffee {
+    @Id
+    @GeneratedValue
     private Long id;
+
     private String name;//Coffe Name
     private String region;//Which region Kenya etiophia etc.
     private String type;// arabica or robusta
     private String method;//v60 chemex aeropress etc
     private String description;//how did you make coffee
     private boolean milk;//Have in milk
-    private String grindingtype;//espresso , filter or bigger  beans
-    private int point = 0; // like points
-    private int preptime; // preparation time like 3 min for this coffee
+    private String grindingType;//espresso , filter or bigger  beans
+    private Integer point = 0; // like points
+    private Integer prepTime; // preparation time like 3 min for this coffee
 
-    @Id
-    @GeneratedValue
+    public Coffee() {
+    }
+
+    public Coffee(String name, String region, String type, String method, String description, boolean milk, String grindingType, Integer point, Integer prepTime) {
+        this.name = name;
+        this.region = region;
+        this.type = type;
+        this.method = method;
+        this.description = description;
+        this.milk = milk;
+        this.grindingType = grindingType;
+        this.point = point;
+        this.prepTime = prepTime;
+    }
+
     public Long getId() {
         return id;
     }
@@ -83,46 +98,28 @@ public class Coffee {
         this.milk = milk;
     }
 
-    public String getGrindingtype() {
-        return grindingtype;
+    public String getGrindingType() {
+        return grindingType;
     }
 
-    public void setGrindingtype(String grindingtype) {
-        this.grindingtype = grindingtype;
+    public void setGrindingType(String grindingType) {
+        this.grindingType = grindingType;
     }
 
-    public int getPoint() {
+    public Integer getPoint() {
         return point;
     }
 
-    public void setPoint(int point) {
+    public void setPoint(Integer point) {
         this.point = point;
     }
 
-    public int getPreptime() {
-        return preptime;
+    public Integer getPrepTime() {
+        return prepTime;
     }
 
-    public void setPreptime(int preptime) {
-        this.preptime = preptime;
-    }
-
-    public Coffee() {
-
-    }
-
-    public Coffee(Long id, String name, String region, String type, String method, String description, boolean milk, String grindingtype, int point, int preptime) {
-
-        this.id = id;
-        this.name = name;
-        this.region = region;
-        this.type = type;
-        this.method = method;
-        this.description = description;
-        this.milk = milk;
-        this.grindingtype = grindingtype;
-        this.point = point;
-        this.preptime = preptime;
+    public void setPrepTime(Integer prepTime) {
+        this.prepTime = prepTime;
     }
 
     @Override
