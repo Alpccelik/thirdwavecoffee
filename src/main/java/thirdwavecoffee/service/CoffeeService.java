@@ -6,6 +6,7 @@ import thirdwavecoffee.dao.CoffeeDao;
 import thirdwavecoffee.entity.Coffee;
 
 import java.security.InvalidParameterException;
+import java.util.List;
 
 /**
  * Created by alp on 15.10.2017.
@@ -19,19 +20,25 @@ public class CoffeeService {
         this.coffeeDao = coffeeDao;
     }
 
-    public Coffee create(Coffee coffee) {
+    public List<Coffee> findAll() {
+        return coffeeDao.findAll();
+    }
+
+    public Coffee createCoffee(Coffee coffee) {
         return coffeeDao.save(coffee);
     }
 
-    public Coffee update(Coffee coffee) {
-        if (coffeeDao.findOne(coffee.getId()) != null) {
+    public Coffee updateCoffee(Coffee coffee) {
+        if (coffeeDao.exists(coffee.getId())) {
             return coffeeDao.save(coffee);
         }
         throw new InvalidParameterException();
     }
 
     public void deleteCoffee(Long id) {
-        Coffee coffee = coffeeDao.findOne(id);
-        coffeeDao.delete(coffee);
+        if (coffeeDao.exists(id)) {
+            coffeeDao.delete(id);
+        }
     }
+
 }

@@ -2,10 +2,7 @@ package thirdwavecoffee.entity;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by alp on 15.10.2017.
@@ -17,15 +14,18 @@ public class Coffee {
     @GeneratedValue
     private Long id;
 
+
     private String name;//Coffe Name
     private String region;//Which region Kenya etiophia etc.
     private String type;// arabica or robusta
     private String method;//v60 chemex aeropress etc
+    @Lob
     private String description;//how did you make coffee
     private boolean milk;//Have in milk
     private String grindingType;//espresso , filter or bigger  beans
     private Integer point = 0; // like points
     private Integer prepTime; // preparation time like 3 min for this coffee
+
 
     public Coffee() {
     }
@@ -40,6 +40,8 @@ public class Coffee {
         this.grindingType = grindingType;
         this.point = point;
         this.prepTime = prepTime;
+
+
     }
 
     public Long getId() {

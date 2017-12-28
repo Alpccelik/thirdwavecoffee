@@ -2,8 +2,8 @@ package thirdwavecoffee.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import thirdwavecoffee.dao.CoffeeDao;
 import thirdwavecoffee.entity.Coffee;
+import thirdwavecoffee.service.CoffeeService;
 
 import java.util.List;
 
@@ -15,28 +15,28 @@ import java.util.List;
 @RequestMapping("/api/coffee")
 public class CoffeeController {
 
+
     @Autowired
-    private CoffeeDao coffeeDao;
+    private CoffeeService coffeeService;
 
     @GetMapping
     public List<Coffee> list() {
-        return coffeeDao.findAll();
+        return coffeeService.findAll();
     }
 
     @PostMapping
     public Coffee create(Coffee coffee) {
-        return coffeeDao.save(coffee);
+        return coffeeService.createCoffee(coffee);
     }
 
     @PutMapping
     public Coffee update(Coffee coffee) {
-        return coffeeDao.save(coffee);
+        return coffeeService.updateCoffee(coffee);
     }
 
     @DeleteMapping
-    @RequestMapping("/{id}")
     public void delete(Long id) {
-        coffeeDao.delete(id);
+        coffeeService.deleteCoffee(id);
     }
 
 }
